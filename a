@@ -1,45 +1,78 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Site with Braze</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript">
+        !function(e,t){e.Braze=e.Braze||function(){e.Braze.q.push(arguments)};
+        var r=e.Braze;e.Braze.q=[],e.Braze.onReady=function(t){r.onReady.q.push(t)},r.onReady.q=[];
+        var n=t.createElement("script");n.type="text/javascript",n.async=1,n.src="https://js.appboycdn.com/web-sdk/4.6/appboy.min.js";
+        var a=t.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a)}(window,document);
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
-}
+        braze.initialize('YOUR-API-KEY-HERE', {
+            baseUrl: 'YOUR-BASE-URL-HERE'
+        });
 
-nav ul {
-    list-style: none;
-    padding: 0;
-}
+        braze.openSession();
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="home">
+        <h1>Welcome to My Mini Site</h1>
+        <p>This is a simple website created as a demonstration.</p>
+    </section>
+    <section id="about">
+        <h2>About</h2>
+        <p>This page contains information about me or my business.</p>
+    </section>
+    <section id="services">
+        <h2>Services</h2>
+        <p>Here are the services I offer:</p>
+        <ul>
+            <li>Service 1</li>
+            <li>Service 2</li>
+            <li>Service 3</li>
+        </ul>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2024 My Mini Site</p>
+    </footer>
+    <script type="text/javascript">
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            braze.changeUser(email);
+            braze.getUser().setFirstName(name);
+            braze.logCustomEvent('contact_form_submitted', {
+                name: name,
+                email: email
+            });
+            alert('Form submitted!');
+        });
+    </script>
+</body>
+</html>
 
-nav ul li {
-    display: inline;
-    margin: 0 10px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-section {
-    padding: 20px;
-    margin: 20px;
-    background-color: white;
-    border-radius: 8px;
-}
-
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #333;
-    color: white;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
