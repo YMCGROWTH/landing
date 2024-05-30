@@ -1,7 +1,45 @@
-echo "# landing" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/YMCGROWTH/landing.git
-git push -u origin main
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+section {
+    padding: 20px;
+    margin: 20px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
